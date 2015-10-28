@@ -197,14 +197,24 @@ namespace BudgetReport
         {
             double sum = 0;
             int maxIndex = xlWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing).Row;
+            string sampleDate;
+            string sampleCat;
+            int sampleDateInt;
+            int fromDateInt = Int32.Parse(fromDate);
 
-            for (rowIndex = 2; rowIndex < maxIndex; rowIndex++)
+            category = category.ToLower();
+
+            for (rowIndex = 2; rowIndex <= maxIndex; rowIndex++)
             {
-                string sample = xlWorkSheet.Cells[rowIndex, 1].Value.ToString();
-                if (sample.StartsWith(fromDate))
+                sampleDate = xlWorkSheet.Cells[rowIndex, 1].Value.ToString();
+                sampleDateInt = Int32.Parse(sampleDate);
+                sampleCat = xlWorkSheet.Cells[rowIndex, 2].Value.ToString().ToLower();
+                if (sampleDateInt >= fromDateInt && sampleCat == category)
                 {
                     sum += xlWorkSheet.Cells[rowIndex, 3].Value;
+
                 }
+                Debug.WriteLine(sampleDate + " " + sampleCat + " " + category);
             }
 
             return sum;

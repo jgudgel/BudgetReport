@@ -15,6 +15,9 @@ namespace BudgetReport
         ExcelWriter ew = null;
         string currentDate = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() +
                                 DateTime.Now.Day.ToString();
+        string dateInit = "";
+        string category = "";
+        double sum;
 
         public BudgetReportForm()
         {
@@ -35,9 +38,10 @@ namespace BudgetReport
             // All fields must have entry
 
             // Estimate must be a numeric value
+            dateInit = DateTextY.Text + DateTextM.Text + DateTextD.Text;
+            category = CategoryTextBox.Text;
 
-
-            double sum = ew.calculateProg("category", "201510");
+            double sum = ew.calculateProg(category, dateInit);
             MessageBox.Show(sum.ToString());
         }
 
