@@ -35,10 +35,14 @@
             this.EstimateTextBox = new System.Windows.Forms.TextBox();
             this.AddressLabel = new System.Windows.Forms.Label();
             this.CalcButton = new System.Windows.Forms.Button();
-            this.DateLabel = new System.Windows.Forms.Label();
-            this.DateTextM = new System.Windows.Forms.TextBox();
-            this.DateTextD = new System.Windows.Forms.TextBox();
-            this.DateTextY = new System.Windows.Forms.TextBox();
+            this.DateILabel = new System.Windows.Forms.Label();
+            this.DateITextM = new System.Windows.Forms.TextBox();
+            this.DateITextD = new System.Windows.Forms.TextBox();
+            this.DateITextY = new System.Windows.Forms.TextBox();
+            this.DateFLabel = new System.Windows.Forms.Label();
+            this.DateFTextM = new System.Windows.Forms.TextBox();
+            this.DateFTextD = new System.Windows.Forms.TextBox();
+            this.DateFTextY = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // NotificationLabel
@@ -62,7 +66,7 @@
             // EstimateLabel
             // 
             this.EstimateLabel.AutoSize = true;
-            this.EstimateLabel.Location = new System.Drawing.Point(16, 92);
+            this.EstimateLabel.Location = new System.Drawing.Point(16, 139);
             this.EstimateLabel.Name = "EstimateLabel";
             this.EstimateLabel.Size = new System.Drawing.Size(87, 13);
             this.EstimateLabel.TabIndex = 2;
@@ -77,7 +81,7 @@
             // 
             // EstimateTextBox
             // 
-            this.EstimateTextBox.Location = new System.Drawing.Point(115, 84);
+            this.EstimateTextBox.Location = new System.Drawing.Point(115, 132);
             this.EstimateTextBox.Name = "EstimateTextBox";
             this.EstimateTextBox.Size = new System.Drawing.Size(100, 20);
             this.EstimateTextBox.TabIndex = 4;
@@ -92,53 +96,87 @@
             // 
             // CalcButton
             // 
-            this.CalcButton.Location = new System.Drawing.Point(77, 147);
+            this.CalcButton.Location = new System.Drawing.Point(115, 158);
             this.CalcButton.Name = "CalcButton";
             this.CalcButton.Size = new System.Drawing.Size(75, 23);
             this.CalcButton.TabIndex = 6;
             this.CalcButton.Text = "Calculate";
             this.CalcButton.UseVisualStyleBackColor = true;
             // 
-            // DateLabel
+            // DateILabel
             // 
-            this.DateLabel.AutoSize = true;
-            this.DateLabel.Location = new System.Drawing.Point(19, 118);
-            this.DateLabel.Name = "DateLabel";
-            this.DateLabel.Size = new System.Drawing.Size(57, 13);
-            this.DateLabel.TabIndex = 7;
-            this.DateLabel.Text = "Initial Date";
+            this.DateILabel.AutoSize = true;
+            this.DateILabel.Location = new System.Drawing.Point(16, 91);
+            this.DateILabel.Name = "DateILabel";
+            this.DateILabel.Size = new System.Drawing.Size(57, 13);
+            this.DateILabel.TabIndex = 7;
+            this.DateILabel.Text = "Initial Date";
             // 
-            // DateTextM
+            // DateITextM
             // 
-            this.DateTextM.Location = new System.Drawing.Point(115, 110);
-            this.DateTextM.Name = "DateTextM";
-            this.DateTextM.Size = new System.Drawing.Size(19, 20);
-            this.DateTextM.TabIndex = 8;
+            this.DateITextM.Location = new System.Drawing.Point(115, 84);
+            this.DateITextM.Name = "DateITextM";
+            this.DateITextM.Size = new System.Drawing.Size(19, 20);
+            this.DateITextM.TabIndex = 8;
             // 
-            // DateTextD
+            // DateITextD
             // 
-            this.DateTextD.Location = new System.Drawing.Point(141, 110);
-            this.DateTextD.Name = "DateTextD";
-            this.DateTextD.Size = new System.Drawing.Size(21, 20);
-            this.DateTextD.TabIndex = 9;
+            this.DateITextD.Location = new System.Drawing.Point(140, 84);
+            this.DateITextD.Name = "DateITextD";
+            this.DateITextD.Size = new System.Drawing.Size(21, 20);
+            this.DateITextD.TabIndex = 9;
             // 
-            // DateTextY
+            // DateITextY
             // 
-            this.DateTextY.Location = new System.Drawing.Point(169, 110);
-            this.DateTextY.Name = "DateTextY";
-            this.DateTextY.Size = new System.Drawing.Size(46, 20);
-            this.DateTextY.TabIndex = 10;
+            this.DateITextY.Location = new System.Drawing.Point(167, 84);
+            this.DateITextY.Name = "DateITextY";
+            this.DateITextY.Size = new System.Drawing.Size(46, 20);
+            this.DateITextY.TabIndex = 10;
+            // 
+            // DateFLabel
+            // 
+            this.DateFLabel.AutoSize = true;
+            this.DateFLabel.Location = new System.Drawing.Point(16, 115);
+            this.DateFLabel.Name = "DateFLabel";
+            this.DateFLabel.Size = new System.Drawing.Size(55, 13);
+            this.DateFLabel.TabIndex = 11;
+            this.DateFLabel.Text = "Final Date";
+            // 
+            // DateFTextM
+            // 
+            this.DateFTextM.Location = new System.Drawing.Point(115, 108);
+            this.DateFTextM.Name = "DateFTextM";
+            this.DateFTextM.Size = new System.Drawing.Size(19, 20);
+            this.DateFTextM.TabIndex = 12;
+            // 
+            // DateFTextD
+            // 
+            this.DateFTextD.Location = new System.Drawing.Point(141, 108);
+            this.DateFTextD.Name = "DateFTextD";
+            this.DateFTextD.Size = new System.Drawing.Size(20, 20);
+            this.DateFTextD.TabIndex = 13;
+            // 
+            // DateFTextY
+            // 
+            this.DateFTextY.Location = new System.Drawing.Point(167, 108);
+            this.DateFTextY.Name = "DateFTextY";
+            this.DateFTextY.Size = new System.Drawing.Size(45, 20);
+            this.DateFTextY.TabIndex = 14;
             // 
             // BudgetReportForm
             // 
             this.AcceptButton = this.CalcButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(241, 200);
-            this.Controls.Add(this.DateTextY);
-            this.Controls.Add(this.DateTextD);
-            this.Controls.Add(this.DateTextM);
-            this.Controls.Add(this.DateLabel);
+            this.ClientSize = new System.Drawing.Size(241, 196);
+            this.Controls.Add(this.DateFTextY);
+            this.Controls.Add(this.DateFTextD);
+            this.Controls.Add(this.DateFTextM);
+            this.Controls.Add(this.DateFLabel);
+            this.Controls.Add(this.DateITextY);
+            this.Controls.Add(this.DateITextD);
+            this.Controls.Add(this.DateITextM);
+            this.Controls.Add(this.DateILabel);
             this.Controls.Add(this.CalcButton);
             this.Controls.Add(this.AddressLabel);
             this.Controls.Add(this.EstimateTextBox);
@@ -147,7 +185,7 @@
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.NotificationLabel);
             this.Name = "BudgetReportForm";
-            this.Text = "Budget Report 1.0";
+            this.Text = "Budget Report 1.1";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -162,10 +200,14 @@
         private System.Windows.Forms.TextBox EstimateTextBox;
         private System.Windows.Forms.Label AddressLabel;
         private System.Windows.Forms.Button CalcButton;
-        private System.Windows.Forms.Label DateLabel;
-        private System.Windows.Forms.TextBox DateTextM;
-        private System.Windows.Forms.TextBox DateTextD;
-        private System.Windows.Forms.TextBox DateTextY;
+        private System.Windows.Forms.Label DateILabel;
+        private System.Windows.Forms.TextBox DateITextM;
+        private System.Windows.Forms.TextBox DateITextD;
+        private System.Windows.Forms.TextBox DateITextY;
+        private System.Windows.Forms.Label DateFLabel;
+        private System.Windows.Forms.TextBox DateFTextM;
+        private System.Windows.Forms.TextBox DateFTextD;
+        private System.Windows.Forms.TextBox DateFTextY;
     }
 }
 

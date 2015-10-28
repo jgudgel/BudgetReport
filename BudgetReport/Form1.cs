@@ -16,8 +16,10 @@ namespace BudgetReport
         string currentDate = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() +
                                 DateTime.Now.Day.ToString();
         string dateInit = "";
+        string dateFin = "";
         string category = "";
-        double sum;
+        double estimate, toSpend;
+        int timeSpanFin, timeSpanCurr;
 
         public BudgetReportForm()
         {
@@ -38,11 +40,16 @@ namespace BudgetReport
             // All fields must have entry
 
             // Estimate must be a numeric value
-            dateInit = DateTextY.Text + DateTextM.Text + DateTextD.Text;
+            dateInit = DateITextY.Text + DateITextM.Text + DateITextD.Text;
+            dateFin = DateFTextY.Text + DateFTextM.Text + DateFTextD.Text;
             category = CategoryTextBox.Text;
+            estimate = Convert.ToDouble(EstimateTextBox.Text);
 
-            double sum = ew.calculateProg(category, dateInit);
-            MessageBox.Show(sum.ToString());
+            timeSpanFin = ew.calcDateRange(dateInit, dateFin);
+            timeSpanCurr = ew.calcDateRange(dateInit, currentDate);
+            toSpend = ew.calculateProg(category, dateInit, dateFin, estimate);
+
+            MessageBox.Show(timeSpanFin + " " + timeSpanCurr + " " + toSpend);
         }
 
         private void Form_Closing(object sender, System.ComponentModel.CancelEventArgs e)

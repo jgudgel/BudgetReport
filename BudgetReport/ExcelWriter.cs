@@ -193,31 +193,71 @@ namespace BudgetReport
             System.Environment.Exit(0);
         }
 
-        public double calculateProg(string category, string fromDate)
+        /*
+         *  inputs: 3 strings define range of values to sum, 1 double compares progress
+         *  output: messagebox.show(string) method informs user
+         */
+        public double calculateProg(string category, string fromDate, string toDate, 
+                                    double estimate)
+        {
+            double sum = calculateSum(category, fromDate, toDate);
+
+            return estimate - sum;
+        }
+
+        /*
+         * inputs: 3 strings define which table values to sum
+         *         Dates must be format: yyyymmdd
+         * output: sum
+         */
+        public double calculateSum(string category, string fromDate, string toDate)
         {
             double sum = 0;
             int maxIndex = xlWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing).Row;
-            string sampleDate;
             string sampleCat;
-            int sampleDateInt;
+            double sampleDate;
             int fromDateInt = Int32.Parse(fromDate);
+            int toDateInt = Int32.Parse(toDate);
 
             category = category.ToLower();
 
             for (rowIndex = 2; rowIndex <= maxIndex; rowIndex++)
             {
-                sampleDate = xlWorkSheet.Cells[rowIndex, 1].Value.ToString();
-                sampleDateInt = Int32.Parse(sampleDate);
-                sampleCat = xlWorkSheet.Cells[rowIndex, 2].Value.ToString().ToLower();
-                if (sampleDateInt >= fromDateInt && sampleCat == category)
-                {
-                    sum += xlWorkSheet.Cells[rowIndex, 3].Value;
+                sampleDate = xlWorkSheet.Cells[rowIndex, 1].Value;
+                sampleCat = xlWorkSheet.Cells[rowIndex, 2].Value.ToLower();
 
+                if (category == "all")
+                {
+                    if (sampleDate >= fromDateInt && sampleDate <= toDateInt)
+                    {
+                        sum += xlWorkSheet.Cells[rowIndex, 3].Value;
+                    }
+                    Debug.WriteLine(sampleDate + " " + sampleCat + " " + category);
                 }
-                Debug.WriteLine(sampleDate + " " + sampleCat + " " + category);
+                else
+                {
+                    if (sampleDate >= fromDateInt && sampleDate <= toDateInt
+                        && sampleCat == category)
+                    {
+                        sum += xlWorkSheet.Cells[rowIndex, 3].Value;
+                    }
+                    Debug.WriteLine(sampleDate + " " + sampleCat + " " + category);
+                }
             }
 
             return sum;
+        }
+
+        /* 
+         * TODO: fix this so it handles month to month/ year to year
+         * input: 2 strings for range
+         * output: length of range as int
+         */
+        public int calcDateRange(string fromDate, string toDate)
+        {
+            int fromDateInt = Int32.Parse(fromDate);
+            int toDateInt = Int32.Parse(toDate);
+            return toDateInt - fromDateInt;
         }
 
         public bool IsOpened(Excel.Workbook wkBook, Excel.Application xlApp)
