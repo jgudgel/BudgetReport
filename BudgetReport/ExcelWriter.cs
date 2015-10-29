@@ -13,8 +13,10 @@ namespace BudgetReport
     public class ExcelWriter
     {
         Excel.Application xlApp = null;
-        static Excel.Workbook xlWorkBook;
+        Excel.Workbook xlWorkBook;
         Excel.Worksheet xlWorkSheet;
+        Excel.Range catCell, dateCell, valCell;
+
         object misValue;
         int rowIndex;
         string _myDocPath = "";
@@ -26,6 +28,7 @@ namespace BudgetReport
 
             ConnectToBudget();
         }
+
 
         public bool WriteToExcel(string category, double value, string date)
         {
@@ -123,6 +126,7 @@ namespace BudgetReport
                 xlWorkBook.Close(true, misValue, misValue);
 
                 xlApp.Quit();
+                //releaseObject(cell);
                 releaseObject(xlWorkSheet);
                 releaseObject(xlWorkBook);
                 releaseObject(xlApp);
@@ -212,37 +216,43 @@ namespace BudgetReport
          */
         public double calculateSum(string category, string fromDate, string toDate)
         {
-            double sum = 0;
+
             int maxIndex = xlWorkSheet.Cells.SpecialCells(Excel.XlCellType.xlCellTypeLastCell, Type.Missing).Row;
-            string sampleCat;
-            double sampleDate;
+            double sum = 0;
             int fromDateInt = Int32.Parse(fromDate);
             int toDateInt = Int32.Parse(toDate);
 
             category = category.ToLower();
 
-            for (rowIndex = 2; rowIndex <= maxIndex; rowIndex++)
+
+            foreach (Excel.Range row in xlWorkSheet.UsedRange.Rows)
             {
-                sampleDate = xlWorkSheet.Cells[rowIndex, 1].Value;
-                sampleCat = xlWorkSheet.Cells[rowIndex, 2].Value.ToLower();
+                dateCell = xlWorkSheet.Cells[row.Row,1];
+                catCell = xlWorkSheet.Cells[row.Row,2];
+                valCell = xlWorkSheet.Cells[row.Row,3];
+                
+                if (row.Row == 1) continue;
 
                 if (category == "all")
                 {
-                    if (sampleDate >= fromDateInt && sampleDate <= toDateInt)
+                    if (dateCell.Value >= fromDateInt && dateCell.Value <= toDateInt)
                     {
-                        sum += xlWorkSheet.Cells[rowIndex, 3].Value;
+                        sum += valCell.Value;
                     }
-                    Debug.WriteLine(sampleDate + " " + sampleCat + " " + category);
                 }
+
                 else
                 {
-                    if (sampleDate >= fromDateInt && sampleDate <= toDateInt
-                        && sampleCat == category)
+                    if (dateCell.Value >= fromDateInt && dateCell.Value <= toDateInt
+                        && catCell.Value.ToLower() == category)
                     {
-                        sum += xlWorkSheet.Cells[rowIndex, 3].Value;
+                        sum += valCell.Value;
                     }
-                    Debug.WriteLine(sampleDate + " " + sampleCat + " " + category);
                 }
+
+                releaseObject(catCell);
+                releaseObject(dateCell);
+                releaseObject(valCell);
             }
 
             return sum;
@@ -257,7 +267,17 @@ namespace BudgetReport
         {
             int fromDateInt = Int32.Parse(fromDate);
             int toDateInt = Int32.Parse(toDate);
-            return toDateInt - fromDateInt;
+
+            DateTime oldDate = new DateTime(fromDateInt / 10000,
+                                            (fromDateInt / 100) % 100,
+                                            fromDateInt % 100);
+            DateTime newDate = new DateTime(toDateInt / 10000,
+                                            (toDateInt / 100) % 100,
+                                            toDateInt % 100);
+
+            TimeSpan ts = newDate - oldDate;
+
+            return ts.Days;
         }
 
         public bool IsOpened(Excel.Workbook wkBook, Excel.Application xlApp)

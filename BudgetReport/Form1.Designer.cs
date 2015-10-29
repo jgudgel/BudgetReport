@@ -68,9 +68,9 @@
             this.EstimateLabel.AutoSize = true;
             this.EstimateLabel.Location = new System.Drawing.Point(16, 139);
             this.EstimateLabel.Name = "EstimateLabel";
-            this.EstimateLabel.Size = new System.Drawing.Size(87, 13);
+            this.EstimateLabel.Size = new System.Drawing.Size(86, 13);
             this.EstimateLabel.TabIndex = 2;
-            this.EstimateLabel.Text = "Monthly Estimate";
+            this.EstimateLabel.Text = "Target Spending";
             // 
             // CategoryTextBox
             // 
@@ -84,7 +84,7 @@
             this.EstimateTextBox.Location = new System.Drawing.Point(115, 132);
             this.EstimateTextBox.Name = "EstimateTextBox";
             this.EstimateTextBox.Size = new System.Drawing.Size(100, 20);
-            this.EstimateTextBox.TabIndex = 4;
+            this.EstimateTextBox.TabIndex = 10;
             // 
             // AddressLabel
             // 
@@ -99,7 +99,7 @@
             this.CalcButton.Location = new System.Drawing.Point(115, 158);
             this.CalcButton.Name = "CalcButton";
             this.CalcButton.Size = new System.Drawing.Size(75, 23);
-            this.CalcButton.TabIndex = 6;
+            this.CalcButton.TabIndex = 2;
             this.CalcButton.Text = "Calculate";
             this.CalcButton.UseVisualStyleBackColor = true;
             // 
@@ -108,60 +108,60 @@
             this.DateILabel.AutoSize = true;
             this.DateILabel.Location = new System.Drawing.Point(16, 91);
             this.DateILabel.Name = "DateILabel";
-            this.DateILabel.Size = new System.Drawing.Size(57, 13);
+            this.DateILabel.Size = new System.Drawing.Size(55, 13);
             this.DateILabel.TabIndex = 7;
-            this.DateILabel.Text = "Initial Date";
+            this.DateILabel.Text = "Start Date";
             // 
             // DateITextM
             // 
             this.DateITextM.Location = new System.Drawing.Point(115, 84);
             this.DateITextM.Name = "DateITextM";
-            this.DateITextM.Size = new System.Drawing.Size(19, 20);
-            this.DateITextM.TabIndex = 8;
+            this.DateITextM.Size = new System.Drawing.Size(22, 20);
+            this.DateITextM.TabIndex = 4;
             // 
             // DateITextD
             // 
-            this.DateITextD.Location = new System.Drawing.Point(140, 84);
+            this.DateITextD.Location = new System.Drawing.Point(143, 84);
             this.DateITextD.Name = "DateITextD";
             this.DateITextD.Size = new System.Drawing.Size(21, 20);
-            this.DateITextD.TabIndex = 9;
+            this.DateITextD.TabIndex = 5;
             // 
             // DateITextY
             // 
-            this.DateITextY.Location = new System.Drawing.Point(167, 84);
+            this.DateITextY.Location = new System.Drawing.Point(169, 84);
             this.DateITextY.Name = "DateITextY";
             this.DateITextY.Size = new System.Drawing.Size(46, 20);
-            this.DateITextY.TabIndex = 10;
+            this.DateITextY.TabIndex = 6;
             // 
             // DateFLabel
             // 
             this.DateFLabel.AutoSize = true;
             this.DateFLabel.Location = new System.Drawing.Point(16, 115);
             this.DateFLabel.Name = "DateFLabel";
-            this.DateFLabel.Size = new System.Drawing.Size(55, 13);
+            this.DateFLabel.Size = new System.Drawing.Size(52, 13);
             this.DateFLabel.TabIndex = 11;
-            this.DateFLabel.Text = "Final Date";
+            this.DateFLabel.Text = "End Date";
             // 
             // DateFTextM
             // 
             this.DateFTextM.Location = new System.Drawing.Point(115, 108);
             this.DateFTextM.Name = "DateFTextM";
-            this.DateFTextM.Size = new System.Drawing.Size(19, 20);
-            this.DateFTextM.TabIndex = 12;
+            this.DateFTextM.Size = new System.Drawing.Size(22, 20);
+            this.DateFTextM.TabIndex = 7;
             // 
             // DateFTextD
             // 
-            this.DateFTextD.Location = new System.Drawing.Point(141, 108);
+            this.DateFTextD.Location = new System.Drawing.Point(143, 108);
             this.DateFTextD.Name = "DateFTextD";
-            this.DateFTextD.Size = new System.Drawing.Size(20, 20);
-            this.DateFTextD.TabIndex = 13;
+            this.DateFTextD.Size = new System.Drawing.Size(21, 20);
+            this.DateFTextD.TabIndex = 8;
             // 
             // DateFTextY
             // 
-            this.DateFTextY.Location = new System.Drawing.Point(167, 108);
+            this.DateFTextY.Location = new System.Drawing.Point(169, 108);
             this.DateFTextY.Name = "DateFTextY";
-            this.DateFTextY.Size = new System.Drawing.Size(45, 20);
-            this.DateFTextY.TabIndex = 14;
+            this.DateFTextY.Size = new System.Drawing.Size(46, 20);
+            this.DateFTextY.TabIndex = 9;
             // 
             // BudgetReportForm
             // 
