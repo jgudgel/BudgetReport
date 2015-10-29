@@ -81,7 +81,9 @@ namespace BudgetReport
 
         private void CalcButton_Click(object sender, EventArgs e)
         {
-            // checks: notify the user
+            dateInit = DateITextY.Text + DateITextM.Text + DateITextD.Text;
+            dateFin = DateFTextY.Text + DateFTextM.Text + DateFTextD.Text;
+            category = CategoryTextBox.Text;
 
             // All fields must have entry
             emptyE = (CategoryTextBox.Text == HINTCAT || EstimateTextBox.Text == HINTEST ||
@@ -90,9 +92,8 @@ namespace BudgetReport
                 ? true : false;
 
             // Estimate must be a numeric value
-
-            // Dates must have format yyyy mm and dd
-
+            // Dates must have format yyyy mm and dd 
+            formatE = formatCheck(dateInit, dateFin, EstimateTextBox.Text);
 
             if (emptyE)
             {
@@ -100,20 +101,47 @@ namespace BudgetReport
             }
             else if(formatE)
             {
+                MessageBox.Show("Invalid Entry, please double check each field.");
             }
             else
             {
-                dateInit = DateITextY.Text + DateITextM.Text + DateITextD.Text;
-                dateFin = DateFTextY.Text + DateFTextM.Text + DateFTextD.Text;
-                category = CategoryTextBox.Text;
                 estimate = Convert.ToDouble(EstimateTextBox.Text);
-
                 timeSpanFin = ew.calcDateRange(dateInit, dateFin);
                 timeSpanCurr = ew.calcDateRange(dateInit, currentDate);
                 toSpend = ew.calculateProg(category, dateInit, dateFin, estimate);
 
                 MessageBox.Show(toSpend.ToString());
             }
+        }
+
+        bool formatCheck(string dateInit, string dateFin, string estimate)
+        {
+            bool convertE = false, lengthE = false;
+
+            try
+            {
+                int dateInitInt = Convert.ToInt32(dateInit);
+                int dateFinInt = Convert.ToInt32(dateFin);
+                Convert.ToDouble(estimate);
+
+                DateTime initDate = new DateTime(dateInitInt / 10000,
+                                                (dateInitInt / 100) % 100,
+                                                dateInitInt % 100);
+                DateTime finDate = new DateTime(dateFinInt / 10000,
+                                                (dateFinInt / 100) % 100,
+                                                dateFinInt % 100);
+            }
+            catch (Exception ex) when (ex is FormatException || ex is ArgumentOutOfRangeException)
+            {
+                convertE = true;
+            }
+
+            if (dateInit.Length != 8 && dateInit.Length != 8)
+            {
+                lengthE = true;
+            }
+
+            return convertE || lengthE;
         }
 
         private void Form_Closing(object sender, System.ComponentModel.CancelEventArgs e)
