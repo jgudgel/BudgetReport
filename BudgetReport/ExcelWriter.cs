@@ -259,7 +259,6 @@ namespace BudgetReport
         }
 
         /* 
-         * TODO: fix this so it handles month to month/ year to year
          * input: 2 strings for range
          * output: length of range as int
          */
@@ -278,6 +277,31 @@ namespace BudgetReport
             TimeSpan ts = newDate - oldDate;
 
             return ts.Days;
+        }
+
+        
+        /*
+         * Create date object with string: yyyymmdd
+         * Return false if an exception appears
+         */
+        public bool isDate(string date)
+        {
+            try
+            {
+                int dateInt = Int32.Parse(date);
+                DateTime dateCheck = new DateTime(dateInt / 10000,
+                                            (dateInt / 100) % 100,
+                                            dateInt % 100);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return false;
+            }
+            return true;
         }
 
         public bool IsOpened(Excel.Workbook wkBook, Excel.Application xlApp)

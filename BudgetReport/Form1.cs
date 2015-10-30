@@ -33,20 +33,28 @@ namespace BudgetReport
         {
             InitializeComponent();
             #region More Initializing
+            DateITextY.Text = DateTime.Now.Year.ToString();
+            DateITextM.Text = DateTime.Now.Month.ToString();
+            DateITextD.Text = "01";
+            DateFTextY.Text = DateTime.Now.Year.ToString();
+            DateFTextM.Text = DateTime.Now.Month.ToString();
+            DateFTextD.Text = DateTime.DaysInMonth(DateTime.Now.Year, 
+                                            DateTime.Now.Month).ToString();
+            /* hint default
             DateITextY.Text = HINTY;
             DateITextM.Text = HINTM;
             DateITextD.Text = HINTD;
             DateFTextY.Text = HINTY;
             DateFTextM.Text = HINTM;
             DateFTextD.Text = HINTD;
-            CategoryTextBox.Text = HINTCAT;
-            EstimateTextBox.Text = HINTEST;
             DateITextY.ForeColor = SystemColors.GrayText;
             DateITextM.ForeColor = SystemColors.GrayText;
             DateITextD.ForeColor = SystemColors.GrayText;
             DateFTextY.ForeColor = SystemColors.GrayText;
             DateFTextM.ForeColor = SystemColors.GrayText;
-            DateFTextD.ForeColor = SystemColors.GrayText;
+            DateFTextD.ForeColor = SystemColors.GrayText;*/
+            CategoryTextBox.Text = HINTCAT;
+            EstimateTextBox.Text = HINTEST;
             CategoryTextBox.ForeColor = SystemColors.GrayText;
             EstimateTextBox.ForeColor = SystemColors.GrayText;
             #endregion
@@ -101,7 +109,7 @@ namespace BudgetReport
             }
             else if(formatE)
             {
-                MessageBox.Show("Invalid Entry, please double check each field.");
+                MessageBox.Show("Invalid entry, please double check each field.");
             }
             else
             {
@@ -131,7 +139,11 @@ namespace BudgetReport
                                                 (dateFinInt / 100) % 100,
                                                 dateFinInt % 100);
             }
-            catch (Exception ex) when (ex is FormatException || ex is ArgumentOutOfRangeException)
+            catch (FormatException)
+            {
+                convertE = true;
+            }
+            catch (ArgumentOutOfRangeException)
             {
                 convertE = true;
             }
