@@ -21,7 +21,7 @@ namespace BudgetReport
 
         ExcelWriter ew = null;
         string currentDate = DateTime.Now.Year.ToString() + DateTime.Now.Month.ToString() +
-                                DateTime.Now.Day.ToString();
+                                DateTime.Now.ToString("dd");
         bool emptyE = false, formatE = false;
         string dateInit = "";
         string dateFin = "";
@@ -34,10 +34,10 @@ namespace BudgetReport
             InitializeComponent();
             #region More Initializing
             DateITextY.Text = DateTime.Now.Year.ToString();
-            DateITextM.Text = DateTime.Now.Month.ToString();
+            DateITextM.Text = DateTime.Now.ToString("MM");
             DateITextD.Text = "01";
             DateFTextY.Text = DateTime.Now.Year.ToString();
-            DateFTextM.Text = DateTime.Now.Month.ToString();
+            DateFTextM.Text = DateTime.Now.ToString("MM");
             DateFTextD.Text = DateTime.DaysInMonth(DateTime.Now.Year, 
                                             DateTime.Now.Month).ToString();
             /* hint default
@@ -118,7 +118,7 @@ namespace BudgetReport
                 timeSpanCurr = ew.calcDateRange(dateInit, currentDate);
                 toSpend = ew.calculateProg(category, dateInit, dateFin, estimate);
 
-                MessageBox.Show(toSpend.ToString());
+                MessageBox.Show(toSpend.ToString() +" "+timeSpanCurr.ToString());
             }
         }
 
