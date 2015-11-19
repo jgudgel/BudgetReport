@@ -118,7 +118,9 @@ namespace BudgetReport
                 timeSpanCurr = ew.calcDateRange(dateInit, currentDate);
                 toSpend = ew.calculateProg(category, dateInit, dateFin, estimate);
 
-                MessageBox.Show(toSpend.ToString() +" "+timeSpanCurr.ToString());
+                MessageBox.Show(toSpend.ToString()+" left to spend over\n"
+                    +timeSpanCurr.ToString()+" days in your\n"
+                    +category+" budget.");
             }
         }
 

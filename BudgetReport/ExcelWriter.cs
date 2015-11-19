@@ -58,6 +58,7 @@ namespace BudgetReport
         {
             // Notify opening doc
             Debug.WriteLine("Opening Budget.xls...");
+            
             //if (xlApp != null) return;
             if (xlApp == null)
             {
@@ -92,8 +93,7 @@ namespace BudgetReport
                 Debug.WriteLine("Confirmed...");
                 return false;
             }
-
-            
+                        
             // Notify creating doc
             Debug.WriteLine("Does not exist... Creating Budget.xls...");
 
@@ -133,7 +133,7 @@ namespace BudgetReport
             }
             catch (System.Runtime.InteropServices.COMException)
             {
-                //do nothing
+                Debug.WriteLine("COMException on object release");
             }
         }
 
@@ -176,6 +176,7 @@ namespace BudgetReport
             }
         }
 
+        // error report
         public void PrintExcelOpenError()
         {
             Debug.WriteLine("Error during Save: COM Exception\n");
@@ -210,9 +211,10 @@ namespace BudgetReport
         }
 
         /*
-         * inputs: 3 strings define which table values to sum
-         *         Dates must be format: yyyymmdd
-         * output: sum
+         *  inputs:  category
+         *          date range 
+         *          Dates must be format: yyyymmdd
+         *  output:  sum of purchases
          */
         public double calculateSum(string category, string fromDate, string toDate)
         {
@@ -236,6 +238,19 @@ namespace BudgetReport
                 if (category == "all")
                 {
                     if (dateCell.Value >= fromDateInt && dateCell.Value <= toDateInt)
+                    {
+                        sum += valCell.Value;
+                    }
+                }
+
+                if (category == "other")
+                {
+                    if (dateCell.Value >= fromDateInt && dateCell.Value <= toDateInt 
+                        && catCell.Value.ToLower() != "housing" && 
+                           catCell.Value.ToLower() != "food" &&
+                           catCell.Value.ToLower() != "savings" &&
+                           catCell.Value.ToLower() != "transportation" &&
+                           catCell.Value.ToLower() != "past expenses")
                     {
                         sum += valCell.Value;
                     }
@@ -305,6 +320,7 @@ namespace BudgetReport
             return true;
         }
 
+        // check for CLR obj
         public bool IsOpened(Excel.Workbook wkBook, Excel.Application xlApp)
         {
             bool isOpened = true;
@@ -319,16 +335,16 @@ namespace BudgetReport
             return isOpened;
         }
 
+        // check if xlApp is null
         public bool xlAppDNE()
         {
             return (xlApp == null) ? true : false;
         }
 
+        // get doc path
         public string getDocPath()
         {
             return _myDocPath;
         }
-
-
     }
 }
