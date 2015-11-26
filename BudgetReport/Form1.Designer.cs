@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BudgetReportForm));
             this.NotificationLabel = new System.Windows.Forms.Label();
             this.CategoryLabel = new System.Windows.Forms.Label();
             this.EstimateLabel = new System.Windows.Forms.Label();
@@ -184,6 +185,7 @@
             this.Controls.Add(this.EstimateLabel);
             this.Controls.Add(this.CategoryLabel);
             this.Controls.Add(this.NotificationLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BudgetReportForm";
             this.Text = "Budget Report 1.2";
             this.ResumeLayout(false);

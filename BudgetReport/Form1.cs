@@ -27,7 +27,7 @@ namespace BudgetReport
         string dateFin = "";
         string category = "";
         double estimate, toSpend;
-        int timeSpanFin, timeSpanCurr;
+        int timeSpanFin, timeSpanRemain;
 
         public BudgetReportForm()
         {
@@ -115,11 +115,11 @@ namespace BudgetReport
             {
                 estimate = Convert.ToDouble(EstimateTextBox.Text);
                 timeSpanFin = ew.calcDateRange(dateInit, dateFin);
-                timeSpanCurr = ew.calcDateRange(dateInit, currentDate);
+                timeSpanRemain = ew.calcDateRange(currentDate, dateFin);
                 toSpend = ew.calculateProg(category, dateInit, dateFin, estimate);
 
-                MessageBox.Show(toSpend.ToString()+" left to spend over\n"
-                    +timeSpanCurr.ToString()+" days in your\n"
+                MessageBox.Show("$"+Math.Round(toSpend,2).ToString()+" left to spend over\n"
+                    +timeSpanRemain.ToString()+" days in your\n"
                     +category+" budget.");
             }
         }

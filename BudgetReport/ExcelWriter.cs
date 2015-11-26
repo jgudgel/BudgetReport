@@ -211,7 +211,7 @@ namespace BudgetReport
         }
 
         /*
-         *  inputs:  category
+         *  inputs: category
          *          date range 
          *          Dates must be format: yyyymmdd
          *  output:  sum of purchases
@@ -243,14 +243,14 @@ namespace BudgetReport
                     }
                 }
 
-                if (category == "other")
+                else if (category == "other")
                 {
                     if (dateCell.Value >= fromDateInt && dateCell.Value <= toDateInt 
-                        && catCell.Value.ToLower() != "housing" && 
-                           catCell.Value.ToLower() != "food" &&
-                           catCell.Value.ToLower() != "savings" &&
-                           catCell.Value.ToLower() != "transportation" &&
-                           catCell.Value.ToLower() != "past expenses")
+                        && !catCell.Value.ToLower().Contains("housing") && 
+                           !catCell.Value.ToLower().Contains("food") &&
+                           !catCell.Value.ToLower().Contains("savings") &&
+                           !catCell.Value.ToLower().Contains("transportation") &&
+                           !catCell.Value.ToLower().Contains("past expenses"))
                     {
                         sum += valCell.Value;
                     }
@@ -259,7 +259,7 @@ namespace BudgetReport
                 else
                 {
                     if (dateCell.Value >= fromDateInt && dateCell.Value <= toDateInt
-                        && catCell.Value.ToLower() == category)
+                        && catCell.Value.ToLower().Contains(category))
                     {
                         sum += valCell.Value;
                     }
